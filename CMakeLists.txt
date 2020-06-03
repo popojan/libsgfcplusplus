@@ -64,6 +64,13 @@ set ( CMAKE_C_STANDARD 11 )
 set ( CMAKE_CXX_VISIBILITY_PRESET hidden )
 set ( CMAKE_VISIBILITY_INLINES_HIDDEN 1 )
 
+message( "Applying patches to sgfc..." )
+if ( WIN32 )
+	execute_process ( COMMAND cmd /c "${PROJECT_SOURCE_DIR}/patch/patch_sgfc.bat" WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+else()
+    execute_process ( COMMAND patch/patch_sgfc WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+endif()
+
 # libsgfc++ patches SGFC so that some of its functions throw a C++ exception.
 # This is problematic because SGFC is written in C, and C does not have
 # exceptions. Nevertheless, compilers on the different platforms usually have

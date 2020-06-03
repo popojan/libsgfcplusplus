@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ls patch/*.patch
+find patch -name "*.patch" -exec git apply --directory sgfc {} \;
