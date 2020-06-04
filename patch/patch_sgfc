@@ -1,4 +1,4 @@
 #!/bin/bash
 
 ls patch/*.patch
-find patch -name "*.patch" -exec git apply --directory sgfc {} \;
+ls patch/*.patch | while read f; do git apply --directory sgfc "$f" || true; done
